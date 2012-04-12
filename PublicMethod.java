@@ -18,8 +18,9 @@ public class PublicMethod {
     public void setCode(String c) {
         code = c;
     }
-    public void printCode() {
-        System.out.println(timing + ": " + function);
-        System.out.println(" do : " + code);
+    public void generateCode() {
+        System.out.println("\tadvice execution(\"void " + function + "()\"): "  + timing + "() {");
+        System.out.println("\t\t"+code);
+        System.out.println("\t}\n");
     }
 }

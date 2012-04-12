@@ -71,10 +71,13 @@ public class Parser {
             }
         }
     }
-    public void output() {
-        System.out.println("class " + title);
+    public void outputString() {
+        System.out.println("aspect " + title + " {\n");
         for(int i=0; i<publicMethods.size(); i++)
-            publicMethods.get(i).printCode();
+            publicMethods.get(i).generateCode();
+        System.out.println("}");
+    }
+    public void fileOutput() {
 
     }
 }
