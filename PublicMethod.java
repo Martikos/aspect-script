@@ -20,7 +20,7 @@ public class PublicMethod {
     }
     public void generateCode() {
         System.out.println("\tadvice execution(\"void " + function + "()\"): "  + timing + "() {");
-        System.out.println("\t\t"+code);
+        System.out.println("\t\t" + code.trim() + ";");
         System.out.println("\t}\n");
     }
 }

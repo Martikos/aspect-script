@@ -1,10 +1,4 @@
 title World
-env spec specfile
-env out outfile
 
-
-after printframe 
-    guicop scrollbar
-
-before printbutton 
-    guicop button
+after hello 
+    printWorld()

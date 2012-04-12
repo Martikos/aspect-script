@@ -61,7 +61,8 @@ public class Parser {
                     if(keywords.containsKey(key) || strLine.equals(""))
                         break;
                     // it is not a keyword, so it's gonna be method code
-                    code += strLine + "\n";
+                    if(!strLine.equals("\n"))
+                        code += strLine + "\n";
                 }
                 PublicMethod method = new PublicMethod();
                 method.setTiming(timing);
