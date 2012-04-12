@@ -15,7 +15,11 @@ public class PublicMethod {
         function = f;
     }
     // what to execute - shell script
-    public void setcode(String c) {
+    public void setCode(String c) {
         code = c;
+    }
+    public void printCode() {
+        System.out.println(timing + ": " + function);
+        System.out.println(" do : " + code);
     }
 }

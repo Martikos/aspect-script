@@ -19,19 +19,18 @@ public class Parser {
     }
 
     public Parser(String fileLocation) throws Exception {
-
         // initialization
         publicMethods = new ArrayList();
         envVariables = new HashMap();
         keywords = hashList(identifiers);
 
+        // file parsing
         FileInputStream fstream = new FileInputStream(fileLocation);
         DataInputStream in = new DataInputStream(fstream);
         BufferedReader br = new BufferedReader(new InputStreamReader(in));
         String strLine;
     
         while((strLine = br.readLine())!=null) {
-            System.out.println(strLine);
             String[] strs = strLine.split(" ");
             if (strLine.startsWith("title")) {
                 // get class name and title in line
@@ -50,13 +49,32 @@ public class Parser {
                 // actual processing 
 
                 // get identifier
-
+                // identifier should be the first word in the line
+                // function name should be the second word on the line
+                String timing = strs[0];
+                String function = strs[1];
+                String code = "";
+                while((strLine = br.readLine())!=null) {
+                    strs = strLine.split(" ");
+                    // if it is a new identifier or an empty line, break
+                    String key = strs[0];
+                    if(keywords.containsKey(key) || strLine.equals(""))
+                        break;
+                    // it is not a keyword, so it's gonna be method code
+                    code += strLine + "\n";
+                }
+                PublicMethod method = new PublicMethod();
+                method.setTiming(timing);
+                method.setFunction(function);
+                method.setCode(code);
+                publicMethods.add(method);
             }
         }
     }
     public void output() {
         System.out.println("class " + title);
-        System.out.println(envVariables.size());
+        for(int i=0; i<publicMethods.size(); i++)
+            publicMethods.get(i).printCode();
 
     }
 }
