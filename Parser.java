@@ -5,14 +5,25 @@ import java.util.HashMap;
 public class Parser {
 
     private String title = "";
+    private HashMap keywords;
     private HashMap envVariables;
     private ArrayList<PublicMethod> publicMethods;
+
+    private static String[] identifiers = {"after", "before", "around", "when"};
+    
+    private HashMap hashList(String[] strs) {
+        HashMap returnMap = new HashMap();
+        for (int i=0; i<strs.length; i++) 
+            returnMap.put(strs[i], "");
+        return returnMap;
+    }
 
     public Parser(String fileLocation) throws Exception {
 
         // initialization
         publicMethods = new ArrayList();
         envVariables = new HashMap();
+        keywords = hashList(identifiers);
 
         FileInputStream fstream = new FileInputStream(fileLocation);
         DataInputStream in = new DataInputStream(fstream);
@@ -37,6 +48,8 @@ public class Parser {
             } 
             else {
                 // actual processing 
+
+                // get identifier
 
             }
         }
